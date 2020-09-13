@@ -55,6 +55,7 @@ spec:
                         echo 'Hello from mvn image!'
                         ls -R
                         echo '_____________'
+                        mvn package -DskipTests
                         ls -la /root/
                         echo '_____________'
                         ls -R
