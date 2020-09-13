@@ -73,6 +73,7 @@ spec:
                 pwd
                 whoami
                 docker build -t yharwyn/sample-mvn-app:$BUILD_NUMBER .
+                docker tag yharwyn/sample-mvn-app:$BUILD_NUMBER yharwyn/sample-mvn-app:latest
               """
           }
         }
