@@ -39,9 +39,6 @@ spec:
 """
 }
    }
-  stages {
-    stage('Build') {
-      steps {
 //        checkout([$class: 'GitSCM',
 //                        branches: [[name: '*/master' ]],
 //                        extensions: scm.extensions,
@@ -50,6 +47,9 @@ spec:
 //                            credentialsId: '7475a4e3-d467-410a-b073-9ca21746e89d'
 //                        ]]
 //                    ])
+  stages {
+    steps {
+      stage('Build') {
         container('maven') {
           sh """
                         echo 'Hello from mvn image!'
@@ -63,13 +63,11 @@ spec:
         }
       }
       stage('Push') {
-        steps {
           container('docker') {
             sh """
                 docker info
               """
           }
-        }
       }
     }
   }
