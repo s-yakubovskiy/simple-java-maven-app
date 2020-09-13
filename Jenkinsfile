@@ -11,7 +11,7 @@ labels:
   component: ci
 spec:
   # Use service account that can deploy to all namespaces
-  serviceAccountName: jenkins-admin
+  serviceAccountName: jenkins
   containers:
   - name: maven
     image: maven:3.6.3-jdk-8
@@ -31,6 +31,14 @@ spec:
   stages {
     stage('Build') {
       steps {
+        checkout([$class: 'GitSCM',
+                        branches: [[name: '*/master' ]],
+                        extensions: scm.extensions,
+                        userRemoteConfigs: [[
+                            url: 'git@github.com:s-yakubovskiy/simple-java-maven-app.git',
+                            credentialsId: '7475a4e3-d467-410a-b073-9ca21746e89d'
+                        ]]
+                    ])
         container('maven') {
           sh """
                         echo 'Hello from mvn image!'
