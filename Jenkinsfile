@@ -34,9 +34,12 @@ spec:
         container('maven') {
           sh """
                         echo 'Hello from mvn image!'
-												hostname
 												env
 												cat /etc/os-release
+                        ls
+                        echo "LS -R"
+                        pwd
+                        ls -r ../
                                                 """
         }
       }
