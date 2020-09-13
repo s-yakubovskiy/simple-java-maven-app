@@ -48,8 +48,8 @@ spec:
 //                        ]]
 //                    ])
   stages {
-    steps {
-      stage('Build') {
+    stage('Build') {
+      steps {
         container('maven') {
           sh """
                         echo 'Hello from mvn image!'
@@ -62,13 +62,15 @@ spec:
                                                 """
         }
       }
+    }
       stage('Push') {
+        steps {
           container('docker') {
             sh """
                 docker info
               """
           }
+        }
       }
     }
   }
-}
