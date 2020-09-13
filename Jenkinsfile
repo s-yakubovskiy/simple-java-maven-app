@@ -67,7 +67,11 @@ spec:
         steps {
           container('docker') {
             sh """
+                echo "HELLO I AM IN DOCKER"
+                ls -R
                 docker info
+                pwd
+                whoami
               """
           }
         }
