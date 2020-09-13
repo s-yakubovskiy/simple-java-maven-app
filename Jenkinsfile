@@ -62,6 +62,15 @@ spec:
                                                 """
         }
       }
+      stage('Push') {
+        steps {
+          container('docker') {
+            sh """
+                docker info
+              """
+          }
+        }
+      }
     }
   }
 }
