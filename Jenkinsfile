@@ -18,13 +18,13 @@ spec:
     command:
     - cat
     tty: true
-#    volumeMounts:
-#      - mountPath: "/root/.m2"
-#        name: m2
-#  volumes:
-#    - name: m2
-#      persistentVolumeClaim:
-#        claimName: m2
+    volumeMounts:
+      - mountPath: "/root/.m2"
+        name: m2
+  volumes:
+    - name: m2
+      persistentVolumeClaim:
+        claimName: m2
 """
 }
    }
@@ -34,12 +34,11 @@ spec:
         container('maven') {
           sh """
                         echo 'Hello from mvn image!'
-												env
-												cat /etc/os-release
-                        ls
-                        echo "LS -R"
-                        pwd
-                        ls -r ../
+                        ls -R
+                        echo '_____________'
+                        mvn package -DskipTests
+                        echo '_____________'
+                        ls -R
                                                 """
         }
       }
