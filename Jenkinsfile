@@ -11,10 +11,10 @@ labels:
   component: ci
 spec:
   # Use service account that can deploy to all namespaces
-  serviceAccountName: jenkins
+  serviceAccountName: jenkins-admin
   containers:
   - name: maven
-    image: maven:latest
+    image: maven:3.6.3-jdk-8
     command:
     - cat
     tty: true
@@ -36,7 +36,7 @@ spec:
                         echo 'Hello from mvn image!'
                         ls -R
                         echo '_____________'
-                        mvn package -DskipTests
+                        ls -la /root/
                         echo '_____________'
                         ls -R
                                                 """
