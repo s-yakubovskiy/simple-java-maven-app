@@ -63,7 +63,7 @@ spec:
         }
       }
     }
-      stage('Push') {
+      stage('Pre-Push') {
         steps {
           container('docker') {
             sh """
@@ -74,6 +74,16 @@ spec:
                 whoami
                 docker build -t yharwyn/sample-mvn-app:$BUILD_NUMBER .
               """
+          }
+        }
+      }
+      stage('Push') {
+        steps {
+          container('docker') {
+             withDockerRegistry([ credentialsId: "1a1583b3-c6cf-477c-85e8-362855dc8dd4", url: "" ]) {
+                sh 'docker push yharwyn/sample-mvn-app:$BUILD_NUMBER'
+                sh 'docker push yharwyn/sample-mvn-app:latest'
+              }
           }
         }
       }
