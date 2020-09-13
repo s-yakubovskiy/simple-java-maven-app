@@ -72,6 +72,7 @@ spec:
                 docker info
                 pwd
                 whoami
+                docker build -t yharwyn/sample-mvn-app:$BUILD_NUMBER .
               """
           }
         }
